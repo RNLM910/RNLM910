@@ -1,0 +1,50 @@
+def calculator():
+    print("Welcome to the Advanced Calculator!")
+    result = None  # Initialize result to None
+
+    while True:
+        # Ask for the first and second numbers
+        try:
+            if result is None:  # Only ask for numbers if there's no previous result
+                first_number = float(input("Enter the first number: "))
+                second_number = float(input("Enter the second number: "))
+                result = first_number
+            else:
+                second_number = float(input("Enter the next number: "))
+        except ValueError:
+            print("Error: Please enter a valid number.")
+            continue
+
+        # Ask for the operator
+        operator = input("Enter an operator (+, -, *, /), 'reset' to start fresh, or 'exit' to quit: ")
+        
+        if operator.lower() == 'exit':
+            print("Exiting the calculator. Goodbye!")
+            break
+        elif operator.lower() == 'reset':
+            print("Resetting the calculator. Starting fresh!")
+            result = None  # Reset the result
+            continue
+
+        # Perform the calculation based on the operator
+        if operator == '+':
+            result += second_number
+        elif operator == '-':
+            result -= second_number
+        elif operator == '*':
+            result *= second_number
+        elif operator == '/':
+            if second_number != 0:
+                result /= second_number
+            else:
+                print("Error: Division by zero is not allowed.")
+                continue
+        else:
+            print("Error: Invalid operator. Please enter +, -, *, /, 'reset', or 'exit'.")
+            continue
+
+        print(f"Current result: {result}")
+        print("You can continue with further calculations, type 'reset' to start fresh, or 'exit' to quit.")
+
+# Call the calculator function
+calculator()
